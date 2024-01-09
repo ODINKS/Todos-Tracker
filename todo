@@ -1,0 +1,9 @@
+- index page (all todos)
+- Preview page (dynamic route)
+- Anything with DOM Access (e.g. using document.getElementById()), we want to track - change it to state.
+- Utils
+
+
+React Routing
+-Todo dashboard (/)
+-View todo page --page will be dynamic( /todo/:id)
