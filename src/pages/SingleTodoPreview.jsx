@@ -35,7 +35,9 @@ const SingleTodoPreview = () => {
       {/* Main */}
       <main className="main shadow-xl border border-solid min-h-[95vh] px-5">
         {/* Todo Area */}
-        {!todo ? <TodoLoader /> : (<div id="preview-todo-container" className="h-[70vh]">
+        {!todo ? 
+        <TodoLoader /> : 
+        (<div id="preview-todo-container" className="h-[70vh]">
           <section>
             <div className="mb-3 flex flex-row justify-between px-2 py-2 rounded-lg border-b-[2px]">
               {/* Todo input value */}

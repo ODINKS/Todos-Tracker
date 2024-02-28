@@ -45,7 +45,6 @@ const TodoDashboard = () => {
     // Update
     const updateTodo = (event) => {
         event.preventDefault()
-        console.log('clicked!');
         if (!todoInput) {
             setFormError({
                 isError: true,
@@ -148,7 +147,7 @@ const TodoDashboard = () => {
                 <h1 className="text-center text-[2rem] font-bold my-3 mb-5 rounded-lg italic">TODOLIST</h1>
             </header>
             <main className="main shadow-xl border border-solid border-t-0 min-h-[95vh] px-5">
-                <form className="flex flex-row justify-between mb-2 pb-3 border-b border-gray-400" 
+                <form className="flex flex-row justify-between mb-2 pb-3 border-b border-gray-400"
                 // onSubmit={(event) => createTodo(event)}
                 >
                     <div className="w-[50%]">
@@ -158,35 +157,35 @@ const TodoDashboard = () => {
                     </div>
                     {isEditMode ? (<button type="button" className="self-start bg-[#4D4C7D] text-[white] px-3 py-2 rounded-lg" onClick={(event) => updateTodo(event)}>Update todo</button>)
                         : (<button className="self-start bg-green-700 text-[white] px-3 py-2 rounded-lg"
-                        onClick={(event) => createTodo(event)}
+                            onClick={(event) => createTodo(event)}
                         >Add todo</button>)}
                 </form>
                 {!isLoading && todos.length === 0 && (<p className="text-center text-gray-600 my-auto">Your todos will appear here when you add them</p>)}
 
                 {/* Todo section */}
-                {isLoading ? 
-                (<section className='flex flex-col gap-2'>
-                    <TodoLoader /> 
-                    <TodoLoader /> 
-                    <TodoLoader />
-                </section>):
+                {isLoading ?
+                    (<section className='flex flex-col gap-2'>
+                        <TodoLoader />
+                        <TodoLoader />
+                        <TodoLoader />
+                    </section>) :
 
                     (<>
                         <div className="h-[70vh]">
-                            {todos?.sort((a, b) => b.createdAt - a.createdAt).map(({ id, title, createdAt }) => {
+                            {todos?.sort((a, b) => b.createdAt - a.createdAt)?.map(({ id, title, createdAt }) => {
                                 return (
-                                    <>
-                                        <TodoList
-                                            id={id}
-                                            title={title}
-                                            createdAt={createdAt}
-                                            key={`todo-list-${id}`}
-                                            handleEditMode={handleEditMode}
-                                            deleteTodo={deleteTodo}
-                                        />
-                                    </>)
+                                    <TodoList
+                                        id={id}
+                                        title={title}
+                                        createdAt={createdAt}
+                                        key={`todo-list-${id}`}
+                                        handleEditMode={handleEditMode}
+                                        deleteTodo={deleteTodo}
+                                    />
+                                )
                             })
-                            }</div>
+                            }
+                        </div>
                     </>)}
             </main>
         </div>
