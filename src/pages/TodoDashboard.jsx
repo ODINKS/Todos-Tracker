@@ -43,7 +43,8 @@ const TodoDashboard = () => {
     }
 
     // Update
-    const updateTodo = () => {
+    const updateTodo = (event) => {
+        event.preventDefault()
         console.log('clicked!');
         if (!todoInput) {
             setFormError({
@@ -147,14 +148,18 @@ const TodoDashboard = () => {
                 <h1 className="text-center text-[2rem] font-bold my-3 mb-5 rounded-lg italic">TODOLIST</h1>
             </header>
             <main className="main shadow-xl border border-solid border-t-0 min-h-[95vh] px-5">
-                <form className="flex flex-row justify-between mb-2 pb-3 border-b border-gray-400" onSubmit={(event) => createTodo(event)}>
+                <form className="flex flex-row justify-between mb-2 pb-3 border-b border-gray-400" 
+                // onSubmit={(event) => createTodo(event)}
+                >
                     <div className="w-[50%]">
                         <input type="text" placeholder="Type in your todo here" value={todoInput} onChange={(e) => setTodoInput(e.target.value)} className="w-full px-3 py-1 rounded-lg border border-gray-600 focus:border-blue-500 focus:outline-none" />
                         {/* Error message */}
                         {formError?.isError && (<span className="text-red-500 block">{formError.errorMessage}</span>)}
                     </div>
-                    {isEditMode ? (<button type="button" className="self-start bg-[#4D4C7D] text-[white] px-3 py-2 rounded-lg" onClick={updateTodo}>Update todo</button>)
-                        : (<button className="self-start bg-green-700 text-[white] px-3 py-2 rounded-lg ">Add todo</button>)}
+                    {isEditMode ? (<button type="button" className="self-start bg-[#4D4C7D] text-[white] px-3 py-2 rounded-lg" onClick={(event) => updateTodo(event)}>Update todo</button>)
+                        : (<button className="self-start bg-green-700 text-[white] px-3 py-2 rounded-lg"
+                        onClick={(event) => createTodo(event)}
+                        >Add todo</button>)}
                 </form>
                 {!isLoading && todos.length === 0 && (<p className="text-center text-gray-600 my-auto">Your todos will appear here when you add them</p>)}
 
